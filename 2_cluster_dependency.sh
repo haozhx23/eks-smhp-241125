@@ -1,4 +1,3 @@
-export ADMIN_ROLE_ARM=arn:aws:iam::633205212955:role/ec2-adm-role
 
 aws eks create-access-entry \
  --cluster-name $EKS_CLUSTER_NAME \
@@ -13,17 +12,20 @@ aws eks associate-access-policy \
  --access-scope type=cluster \
  --region $AWS_REGION
 
+source ~/.bashrc
+
 aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
 ## Verify Cluster connection
 kubectl config current-context
 kubectl get svc
 
+cd ..
 git clone https://github.com/aws/sagemaker-hyperpod-cli.git
 cd sagemaker-hyperpod-cli/helm_chart
 
 helm lint HyperPodHelmChart
 helm dependencies update HyperPodHelmChart
-helm install dependencies HyperPodHelmChart --dry-run
+# helm install dependencies HyperPodHelmChart --dry-run
 helm install dependencies HyperPodHelmChart --namespace kube-system
 helm list --namespace kube-system
 

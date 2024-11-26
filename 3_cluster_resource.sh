@@ -3,6 +3,7 @@ curl https://raw.githubusercontent.com/aws-samples/awsome-distributed-training/m
 
 export LIFECYCLE_S3_PATH=s3://$LIFECYCLE_S3_BUCKET/$EKS_CLUSTER_NAME/lifecycle/
 aws s3 cp on_create.sh $LIFECYCLE_S3_PATH
+rm -r on_create.sh
 
 cat > cluster-config.json << EOL
 {

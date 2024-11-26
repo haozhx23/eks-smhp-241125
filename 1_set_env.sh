@@ -24,3 +24,5 @@ chmod 700 get_helm.sh
 
 rm -rf ./aws
 rm -rf awscliv2.zip
+rm -r ./kubectl
+rm -r ./get_helm.sh
