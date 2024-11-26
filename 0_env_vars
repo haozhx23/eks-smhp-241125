@@ -1,0 +1,14 @@
+export EKS_CLUSTER_NAME=eks-smhp-1126-v1
+export EKS_CLUSTER_ARN=arn:aws:eks:us-east-1:633205212955:cluster/eks-smhp-1126-v1
+export EXECUTION_ROLE_NAME=hyperpod-eks-1126-v1-ExecutionRole-us-east-1
+export EXECUTION_ROLE_ARN=arn:aws:iam::633205212955:role/hyperpod-eks-1126-v1-ExecutionRole-us-east-1
+export AWS_REGION=us-east-1
+export LIFECYCLE_S3_BUCKET=zz-s3-us-e1
+export ACCEL_INSTANCE_TYPE=ml.g6.2xlarge
+export ACCEL_COUNT=2
+export ACCEL_VOLUME_SIZE=200
+export VPC_ID=vpc-080281cabd959304f
+export SECURITY_GROUP=sg-0730034d7569a6d6e
+export SUBNET_ID=subnet-004a411c7043b829a
+export NODE_RECOVERY=Automatic
+## NODE_RECOVERY=None
