@@ -1,13 +1,12 @@
 
 curl https://raw.githubusercontent.com/aws-samples/awsome-distributed-training/main/1.architectures/7.sagemaker-hyperpod-eks/LifecycleScripts/base-config/on_create.sh --output on_create.sh
 
-export LIFECYCLE_S3_PATH=s3://$LIFECYCLE_S3_BUCKET/$EKS_CLUSTER_NAME/lifecycle/
 aws s3 cp on_create.sh $LIFECYCLE_S3_PATH
 rm -r on_create.sh
 
 cat > cluster-config.json << EOL
 {
-    "ClusterName": "SMHP-v1-$EKS_CLUSTER_NAME",
+    "ClusterName": "${HP_CLUSTER_NAME}",
     "Orchestrator": { 
       "Eks": 
       {

@@ -1,0 +1,33 @@
+{
+    "ClusterName": "SMHP-v4-eksfsmhp-1125v5",
+    "Orchestrator": { 
+      "Eks": 
+      {
+        "ClusterArn": "arn:aws:eks:us-east-1:633205212955:cluster/eksfsmhp-1125v5"
+      }
+    },
+    "InstanceGroups": [
+      {
+        "InstanceGroupName": "worker-group-1",
+        "InstanceType": "ml.g5.12xlarge",
+        "InstanceCount": 2,
+        "InstanceStorageConfigs": [
+          {
+            "EbsVolumeConfig": {
+              "VolumeSizeInGB": 200
+            }
+          }
+        ],
+        "LifeCycleConfig": {
+          "SourceS3Uri": "s3://hyperpod-eks-1125v5-bucket-633205212955-us-east-1/eksfsmhp-1125v5/SMHP-v4-eksfsmhp-1125v5/lifecycle/",
+          "OnCreate": "on_create.sh"
+        },
+        "ExecutionRole": "arn:aws:iam::633205212955:role/hyperpod-eks-1125v5-ExecutionRole-us-east-1",
+        "ThreadsPerCore": 1
+      }
+    ],
+    "VpcConfig": {
+      "SecurityGroupIds": ["sg-07d61b4e0973efe61"],
+      "Subnets":["subnet-004a411c7043b829a"]
+    }
+}
