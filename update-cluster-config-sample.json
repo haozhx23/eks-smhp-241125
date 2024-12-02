@@ -1,24 +1,23 @@
 {
-    "ClusterName": "SMHP-v1-eks4smhp-1126v4",
-    "InstanceGroups": [
-      {
-        "InstanceGroupName": "worker-group-1",
-        "InstanceType": "ml.g6.2xlarge",
-        "InstanceCount": 2,
-        "InstanceStorageConfigs": [
-          {
-            "EbsVolumeConfig": {
-              "VolumeSizeInGB": 200
-            }
+  "ClusterName": "SMHP-v4-eksfsmhp-1125v5",
+  "InstanceGroups": [
+    {
+      "InstanceGroupName": "worker-group-1",
+      "InstanceType": "ml.g5.12xlarge",
+      "InstanceCount": 2,
+      "InstanceStorageConfigs": [
+        {
+          "EbsVolumeConfig": {
+            "VolumeSizeInGB": 400
           }
-        ],
-        "LifeCycleConfig": {
-          "SourceS3Uri": "s3://hyperpod-eks-1126v3-bucket-633205212955-us-east-1/eks4smhp-1126v4/lifecycle/",
-          "OnCreate": "on_create.sh"
-        },
-        "ExecutionRole": "arn:aws:iam::633205212955:role/hyperpod-eks-1126v3-ExecutionRole-us-east-1",
-        "ThreadsPerCore": 1
-      }
-    ],
-    "NodeRecovery": "None"
+        }
+      ],
+      "LifeCycleConfig": {
+        "SourceS3Uri": "s3://hyperpod-eks-1125v5-bucket-633205212955-us-east-1/eksfsmhp-1125v5/SMHP-v4-eksfsmhp-1125v5/lifecycle/",
+        "OnCreate": "on_create.sh"
+      },
+      "ExecutionRole": "arn:aws:iam::633205212955:role/hyperpod-eks-1125v5-ExecutionRole-us-east-1",
+      "ThreadsPerCore": 1
+    }
+  ]
 }
