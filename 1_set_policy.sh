@@ -110,14 +110,33 @@ ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 #     --role-name $EXECUTION_ROLE_NAME \
 #     --region $AWS_REGION
 
-aws iam attach-role-policy --cli-input-json '{
-  "RoleName": "'$EXECUTION_ROLE_NAME'",
-  "PolicyArn": [
-    "arn:aws:iam::'${ACCOUNT_ID}':policy/hyperpod-eks-policy",
-    "arn:aws:iam::${ACCOUNT_ID}:policy/cfn-stack-policy",
-    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
-    "arn:aws:iam::aws:policy/AmazonSageMakerClusterInstanceRolePolicy",
-    "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+# aws iam attach-role-policy --cli-input-json '{
+#   "RoleName": "'$EXECUTION_ROLE_NAME'",
+#   "PolicyArn": [
+#     "arn:aws:iam::'${ACCOUNT_ID}':policy/hyperpod-eks-policy",
+#     "arn:aws:iam::'${ACCOUNT_ID}':policy/cfn-stack-policy",
+#     "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
+#     "arn:aws:iam::aws:policy/AmazonSageMakerClusterInstanceRolePolicy",
+#     "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+#     "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+#   ]
+# }' --region $AWS_REGION
+
+#!/bin/bash
+
+POLICIES=(
+    "arn:aws:iam::${ACCOUNT_ID}:policy/hyperpod-eks-policy"
+    "arn:aws:iam::${ACCOUNT_ID}:policy/cfn-stack-policy"
+    "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+    "arn:aws:iam::aws:policy/AmazonSageMakerClusterInstanceRolePolicy"
+    "arn:aws:iam::aws:policy/AmazonS3FullAccess"
     "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
-  ]
-}' --region $AWS_REGION
+)
+
+for policy in "${POLICIES[@]}"; do
+    echo "Adding policy $policy"
+    aws iam attach-role-policy \
+        --role-name "$EXECUTION_ROLE_NAME" \
+        --policy-arn "$policy" \
+        --region "$AWS_REGION"
+done

@@ -4,7 +4,7 @@ curl https://raw.githubusercontent.com/aws-samples/awsome-distributed-training/m
 aws s3 cp on_create.sh $LIFECYCLE_S3_PATH
 rm -r on_create.sh
 
-cat > cluster-config.json << EOL
+cat > $CLUSTER_CONF_NAME << EOL
 {
     "ClusterName": "${HP_CLUSTER_NAME}",
     "Orchestrator": { 

@@ -27,7 +27,8 @@ helm lint HyperPodHelmChart
 helm dependencies update HyperPodHelmChart
 # helm install dependencies HyperPodHelmChart --dry-run
 helm install dependencies HyperPodHelmChart --namespace kube-system
-helm list --namespace kube-system
+# helm list --namespace kube-system
+cd ../..
 
 echo '---- Start Validation ----'
 echo `helm list --namespace kube-system`
